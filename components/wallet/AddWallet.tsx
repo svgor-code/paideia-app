@@ -346,8 +346,9 @@ const AddWallet: React.FC = () => {
                       };
                       setQrCode(res.data.signingRequestUrl);
                     } catch (e) {
+                      console.log("error", e);
                       globalContext.api.error(
-                        e
+                        "Error logging in with Mobile Wallet"
                       );
                       clearWallet();
                     }

@@ -116,6 +116,7 @@ export class AbstractApi {
   setAlert: (val: IAlerts[]) => void = undefined;
 
   webSocket(request_id: string): WebSocket {
+    console.log("wss_url", process.env.WSS_URL);
     const ws = new WebSocket(`${process.env.WSS_URL}/auth/ws/${request_id}`);
     return ws;
   }
