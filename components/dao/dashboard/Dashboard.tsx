@@ -12,7 +12,7 @@ import NewspaperFilled from "../../../public/icons/newspaper-filled.png";
 import LatestActivity from "./LatestActivity";
 import { GlobalContext, IGlobalContext } from "@lib/AppContext";
 import { IThemeContext, ThemeContext } from "@lib/ThemeContext";
-import { LightTheme } from "@theme/theme";
+import { defaultPrimary, defaultSecondary, LightTheme } from "@theme/theme";
 import { deviceWrapper } from "@components/utilities/Style";
 
 const Dashboard: React.FC = () => {
@@ -85,7 +85,13 @@ const Dashboard: React.FC = () => {
                     bottom: "1rem",
                     width: "55%",
                     color:
-                      themeContext.theme === LightTheme ? "black" : "white",
+                      themeContext.theme ===
+                      LightTheme(
+                        daoData.design.primary_color,
+                        daoData.design.primary_color
+                      )
+                        ? "black"
+                        : "white",
                   }}
                 >
                   <Box sx={{ mt: "4rem" }}>
@@ -98,7 +104,13 @@ const Dashboard: React.FC = () => {
                       fontSize: ".8rem",
                       mt: ".5rem",
                       color:
-                        themeContext.theme === LightTheme ? "white" : "black",
+                        themeContext.theme ===
+                        LightTheme(
+                          daoData.design.dark_primary_color,
+                          daoData.design.dark_secondary_color
+                        )
+                          ? "white"
+                          : "black",
                       backgroundColor: "primary.light",
                     }}
                     endIcon={<ArrowForwardIcon />}
@@ -146,7 +158,13 @@ const Dashboard: React.FC = () => {
                     width: "90%",
                     left: "1rem",
                     color:
-                      themeContext.theme === LightTheme ? "black" : "white",
+                      themeContext.theme ===
+                      LightTheme(
+                        daoData.design.dark_primary_color,
+                        daoData.design.dark_secondary_color
+                      )
+                        ? "black"
+                        : "white",
                   }}
                 >
                   <Box sx={{ mt: "3rem" }}>
@@ -160,7 +178,13 @@ const Dashboard: React.FC = () => {
                       fontSize: ".8rem",
                       mt: ".5rem",
                       color:
-                        themeContext.theme === LightTheme ? "white" : "black",
+                        themeContext.theme ===
+                        LightTheme(
+                          daoData.design.dark_primary_color,
+                          daoData.design.dark_secondary_color
+                        )
+                          ? "white"
+                          : "black",
                     }}
                     endIcon={<ArrowForwardIcon />}
                   >

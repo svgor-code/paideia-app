@@ -10,8 +10,11 @@ import { GlobalContext, IGlobalContext } from "../../lib/AppContext";
 import BottomNav from "./nav/BottomNav";
 import Nav from "./nav/SideNav";
 import TopNav from "./nav/TopNav";
+import { IThemeContext, ThemeContext } from "@lib/ThemeContext";
+import { DarkTheme, LightTheme } from "@theme/theme";
 
 const DaoTemplate: React.FC = (props) => {
+  const themeContext = React.useContext<IThemeContext>(ThemeContext);
   const [showMobile, setShowMobile] = useState<boolean>(false);
   const router = useRouter();
   const [daoSlug, setDaoSlug] = useState("");
@@ -22,7 +25,7 @@ const DaoTemplate: React.FC = (props) => {
     }
   }, [router.isReady]);
   const { data: daoData, error: daoError } = useSWR(
-    `/dao/${daoSlug}`,
+    daoSlug != null && daoSlug !== "" && `/dao/${daoSlug}`,
     fetcher,
     {
       revalidateIfStale: false,
@@ -31,8 +34,26 @@ const DaoTemplate: React.FC = (props) => {
     }
   );
 
+  console.log(daoSlug);
+
   const globalContext = React.useContext<IGlobalContext>(GlobalContext);
   useEffect(() => {
+    if (daoData) {
+      console.log("heeereee", daoData);
+
+      if (localStorage.getItem("theme") === "dark") {
+        themeContext.setTheme(
+          DarkTheme(
+            daoData.design.dark_primary_color,
+            daoData.design.dark_primary_color
+          )
+        );
+      } else {
+        themeContext.setTheme(
+          LightTheme(daoData.design.primary_color, daoData.design.primary_color)
+        );
+      }
+    }
     globalContext.api.setDaoData(daoData);
   }, [daoData]);
 

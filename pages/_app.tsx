@@ -1,8 +1,15 @@
 import React, { useEffect, useState, useMemo } from "react";
 import "@styles/global.css";
 import { AppProps } from "next/app";
-import { DarkTheme, LightTheme } from "@theme/theme";
-import { ThemeProvider } from "@mui/material/styles";
+import {
+  DarkTheme,
+  defaultDarkPrimary,
+  defaultDarkSecondary,
+  defaultPrimary,
+  defaultSecondary,
+  LightTheme,
+} from "@theme/theme";
+import { Theme, ThemeProvider } from "@mui/material/styles";
 import { ThemeContext } from "@lib/ThemeContext";
 import { AppApi } from "@lib/AppApi";
 import { GlobalContext } from "@lib/AppContext";
@@ -33,7 +40,9 @@ const daoVariants = {
 };
 
 const App = ({ Component, pageProps }: AppProps) => {
-  const [theme, setTheme] = useState(LightTheme);
+  const [theme, setTheme] = useState<Theme>(
+    LightTheme(defaultPrimary, defaultSecondary)
+  );
   const [daoData, setDaoData] = useState(undefined);
   const [daoUserData, setDaoUserData] = useState<IDaoUserData>(undefined);
 
@@ -41,11 +50,16 @@ const App = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();
 
   useEffect(() => {
-    setTheme(localStorage.getItem("theme") === "dark" ? DarkTheme : LightTheme);
+    setTheme(
+      localStorage.getItem("theme") === "dark"
+        ? DarkTheme(defaultDarkPrimary, defaultDarkSecondary)
+        : LightTheme(defaultPrimary, defaultSecondary)
+    );
   }, []);
 
   useEffect(() => {
-    let temp = theme === LightTheme ? "light" : "dark";
+    let temp =
+      theme === LightTheme(defaultPrimary, defaultSecondary) ? "light" : "dark";
     localStorage.setItem("theme", temp);
   }, [theme]);
 

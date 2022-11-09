@@ -18,7 +18,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import RedditIcon from "@mui/icons-material/Reddit";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import { IThemeContext, ThemeContext } from "@lib/ThemeContext";
-import { LightTheme } from "@theme/theme";
+import { defaultPrimary, defaultSecondary, LightTheme } from "@theme/theme";
 
 const ThemeIndicator: React.FC<{ theme: ITheme }> = (props) => {
   const themeContext = React.useContext<IThemeContext>(ThemeContext);
@@ -29,7 +29,7 @@ const ThemeIndicator: React.FC<{ theme: ITheme }> = (props) => {
           width: "2rem",
           height: "2rem",
           backgroundColor:
-            themeContext.theme === LightTheme
+            themeContext.theme === LightTheme(defaultPrimary, defaultSecondary)
               ? props.theme.secondary
               : props.theme.secondaryDark,
           borderRadius: "50%",
@@ -42,7 +42,8 @@ const ThemeIndicator: React.FC<{ theme: ITheme }> = (props) => {
             width: "100%",
             height: "100%",
             backgroundColor:
-              themeContext.theme === LightTheme
+              themeContext.theme ===
+              LightTheme(defaultPrimary, defaultSecondary)
                 ? props.theme.primary
                 : props.theme.primaryDark,
             clipPath: "polygon(0 0, 100% 0, 0 100%)",

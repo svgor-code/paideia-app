@@ -9,7 +9,14 @@ import {
 } from "@mui/material";
 
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import { DarkTheme, LightTheme } from "@theme/theme";
+import {
+  DarkTheme,
+  defaultDarkPrimary,
+  defaultDarkSecondary,
+  defaultPrimary,
+  defaultSecondary,
+  LightTheme,
+} from "@theme/theme";
 import SectionTitle from "@components/SectionTitle";
 import Carousel from "react-material-ui-carousel";
 import { useTheme } from "@mui/material/styles";
@@ -19,7 +26,8 @@ const titleStyle = {
   fontWeight: "400",
   lineHeight: "116.7%",
   mb: "24px",
-  color: DarkTheme.palette.text.primary,
+  color: DarkTheme(defaultDarkPrimary, defaultDarkSecondary).palette.text
+    .primary,
   textTransform: "uppercase",
   fontFamily: '"Viga", sans-serif',
   textShadow: "0px 2px 2px rgba(0, 0, 0, 0.6)",
@@ -29,7 +37,8 @@ const secondaryTitleStyle = {
   fontSize: "34px",
   lineHeight: "41px",
   fontWeight: "700",
-  color: DarkTheme.palette.text.primary,
+  color: DarkTheme(defaultDarkPrimary, defaultDarkSecondary).palette.text
+    .primary,
   // textTransform: "uppercase",
   fontFamily: '"Space Grotesk", sans-serif',
   mb: "16px",
@@ -300,7 +309,8 @@ const HighlightCarousel: FC<IHighlightCarouselProps> = ({ highlights }) => {
       }
       navButtonsProps={{
         style: {
-          backgroundColor: LightTheme.palette.primary.main,
+          backgroundColor: LightTheme(defaultPrimary, defaultSecondary).palette
+            .primary.main,
           // borderRadius: 0
         },
       }}

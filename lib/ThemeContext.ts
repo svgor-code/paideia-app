@@ -1,6 +1,6 @@
 import { Theme } from "@mui/material";
 import * as React from "react";
-import { DarkTheme, LightTheme } from "../theme/theme";
+import { defaultPrimary, defaultSecondary, LightTheme } from "../theme/theme";
 
 export interface IThemeContext {
   theme: Theme;
@@ -8,6 +8,6 @@ export interface IThemeContext {
 }
 
 export const ThemeContext = React.createContext({
-  theme: LightTheme,
+  theme: LightTheme(defaultPrimary, defaultSecondary),
   setTheme: undefined,
 });

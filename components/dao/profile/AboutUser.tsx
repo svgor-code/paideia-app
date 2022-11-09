@@ -136,7 +136,9 @@ const AboutUser: React.FC<IAboutUser> = (props) => {
             </Box>
           </Box>
         </Box>
-        <Box sx={{ fontSize: ".9rem", wordWrap: 'break-word' }}>{props.bio}</Box>
+        <Box sx={{ fontSize: ".9rem", wordWrap: "break-word" }}>
+          {props.bio}
+        </Box>
         {/* <Box
           sx={{
             display: "flex",

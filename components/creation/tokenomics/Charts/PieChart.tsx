@@ -1,10 +1,9 @@
-import { Box } from "@mui/material";
 import { ResponsivePie } from "@nivo/pie";
 import * as React from "react";
-import { ITokenHolder, ITokenomics } from "@lib/creation/Interfaces";
-import { percentage } from "../../../../lib/creation/Utilities";
+import { ITokenomics } from "@lib/creation/Interfaces";
+import { percentage } from "@lib/creation/Utilities";
 
-import { LightTheme } from "../../../../theme/theme";
+import { defaultPrimary, defaultSecondary, LightTheme } from "@theme/theme";
 import { IThemeContext, ThemeContext } from "@lib/ThemeContext";
 
 const PieChart: React.FC<ITokenomics> = (props) => {
@@ -46,7 +45,7 @@ const PieChart: React.FC<ITokenomics> = (props) => {
       }}
       arcLinkLabelsSkipAngle={10}
       arcLinkLabelsTextColor={
-        themeContext.theme === LightTheme
+        themeContext.theme === LightTheme(defaultPrimary, defaultSecondary)
           ? "rgba(0, 0, 0, 0.6)"
           : "rgba(255, 255, 255, 0.7)"
       }

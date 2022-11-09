@@ -5,7 +5,11 @@
 import * as React from "react";
 import { ITokenomics } from "@lib/creation/Interfaces";
 import dateFormat from "dateformat";
-import { LightTheme } from "../../../../theme/theme";
+import {
+  defaultPrimary,
+  defaultSecondary,
+  LightTheme,
+} from "../../../../theme/theme";
 import {
   CreationContext,
   ICreationContext,
@@ -224,7 +228,7 @@ const Emissions: React.FC<ITokenomics> = (props) => {
       enablePoints={false}
       theme={{
         textColor:
-          themeContext.theme === LightTheme
+          themeContext.theme === LightTheme(defaultPrimary, defaultSecondary)
             ? "rgba(0, 0, 0, 0.6)"
             : "rgba(255, 255, 255, 0.7)",
       }}

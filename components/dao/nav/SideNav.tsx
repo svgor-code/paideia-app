@@ -7,12 +7,19 @@ import Footer from "./Footer";
 import LightFooter from "@public/dao/light-footer.png";
 import DarkFooter from "@public/dao/dark-footer.png";
 import { ThemeContext, IThemeContext } from "@lib/ThemeContext";
-import { DarkTheme } from "@theme/theme";
+import {
+  DarkTheme,
+  defaultDarkPrimary,
+  defaultDarkSecondary,
+} from "@theme/theme";
 import { deviceStruct, deviceWrapper } from "@components/utilities/Style";
 import { INav } from "./TopNav";
+import { GlobalContext, IGlobalContext } from "@lib/AppContext";
 
 const Nav: React.FC<INav> = (props) => {
   const themeContext = React.useContext<IThemeContext>(ThemeContext);
+  const globalContext = React.useContext<IGlobalContext>(GlobalContext);
+  const daoData = globalContext.api.daoData;
   return (
     <Box
       sx={{
@@ -27,7 +34,10 @@ const Nav: React.FC<INav> = (props) => {
         position: "sticky",
         top: 0,
         backgroundImage: `url(${
-          themeContext.theme === DarkTheme ? DarkFooter.src : LightFooter.src
+          themeContext.theme.palette.primary.main ==
+          (daoData ? daoData.design.dark_primary_color : defaultDarkPrimary)
+            ? DarkFooter.src
+            : LightFooter.src
         })`,
         backgroundPosition: "bottom 0px right 0px",
         backgroundRepeat: "no-repeat",
