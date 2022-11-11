@@ -54,7 +54,7 @@ const BottomNav: React.FC = () => {
         }}
       >
         {daoData.design
-          ? daoData.design.footer_social_links.map((i: ISocialLinkGet) => {
+          ? daoData.design.footer_social_links.map((i: ISocialLinkGet, index: number) => {
               return (
                 <Box
                   onClick={() => window.open(i.link_url)}

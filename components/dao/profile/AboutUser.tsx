@@ -179,7 +179,7 @@ const AboutUser: React.FC<IAboutUser> = (props) => {
         <Box>
           <Chip
             icon={<AccountBalanceWalletIcon />}
-            label={snipAddress(props.wallet ? props.wallet : wallet, 25, 14)}
+            label={props.wallet ? props.wallet : wallet}
             color="primary"
           />
         </Box>
@@ -189,7 +189,7 @@ const AboutUser: React.FC<IAboutUser> = (props) => {
           label={
             (props.wallet && userTokens
               ? userTokens.toLocaleString("en-US")
-              : utxos.toLocaleString("en-US")) +
+              : utxos?.toLocaleString("en-US")) +
             " " +
             ticker
           }

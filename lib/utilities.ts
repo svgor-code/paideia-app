@@ -1,6 +1,7 @@
 import axios from "axios";
 import { IObj } from "@lib/Interfaces";
 import { IAlerts, ValidAlert } from "@components/utilities/Alert";
+import { v4 as uuidv4 } from 'uuid';
 
 type RequestType = "POST" | "PUT" | "GET" | "PATCH" | "DELETE";
 
@@ -81,6 +82,19 @@ export const addDays = (days: number, date: Date = new Date()): Date => {
   let temp = new Date(date);
   temp.setDate(temp.getDate() + days);
   return temp;
+};
+
+export const generateSlug = (id: string | number, name: string) => {
+  const slug =
+    name
+      .toLowerCase()
+      .trim()
+      .replaceAll(/[^a-zA-Z0-9 ]/g, '')
+      .replaceAll(' ', '-') +
+    '-' +
+    id.toString();
+  if (slug.startsWith('-')) return id;
+  return slug;
 };
 
 export const clientSideOnly = (func: Function): void => {
@@ -196,6 +210,7 @@ export class AbstractApi {
       temp.push({
         content: err,
         severity: "error",
+        id: uuidv4()
       });
       this.setAlert(temp);
     }
@@ -207,6 +222,7 @@ export class AbstractApi {
       temp.push({
         content: content,
         severity: severity,
+        id: uuidv4()
       });
       this.setAlert(temp);
     }
@@ -299,7 +315,7 @@ export class AbstractApi {
           });
         }
       } catch (err) {
-        console.log("err", err);
+        console.log(err);
         return reject(err);
       }
     });
