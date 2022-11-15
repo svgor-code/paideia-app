@@ -44,9 +44,16 @@ const DaoCard: FC<IDaoCard> = ({ dao }) => {
   return (
     <Box
       sx={{
-        height: "100%",
+        backgroundColor: "fileInput.outer",
+        border: "1px solid",
+        borderColor: "border.main",
+        borderRadius: ".3rem",
+        width: "100%",
+        height: '100%',
+        ":hover": {
+          borderColor: "primary.main",
+        },
       }}
-      className="border-grad"
     >
       <Grid
         container
@@ -79,7 +86,6 @@ const DaoCard: FC<IDaoCard> = ({ dao }) => {
               />
             </Box>
           )}
-
           <Avatar
             src={dao?.logo_url}
             sx={{
@@ -97,7 +103,6 @@ const DaoCard: FC<IDaoCard> = ({ dao }) => {
               fontWeight: "700",
               lineHeight: "42px",
               mb: "24px",
-              color: "#fff",
               fontFamily: '"Space Grotesk", sans-serif',
               fontSize: "34px",
               letterSpacing: "0.225543px",
@@ -125,7 +130,7 @@ const DaoCard: FC<IDaoCard> = ({ dao }) => {
             href={dao.dao_url}
             sx={{ py: "2px", ml: "-6px" }}
           >
-            Learn More
+            View DAO
           </Button>
         </Grid>
       </Grid>
@@ -275,11 +280,9 @@ const ProjectList: FC<IProjectListProps> = ({ daos, sx }) => {
     }
   };
 
-  const theme = useTheme();
-
   return (
     <>
-      <Grid container sx={{ my: "12px" }} spacing={3} direction="row">
+      <Grid container sx={{ mt: "0", mb: '24px' }} spacing={3} direction="row">
         <Grid item xs>
           <SearchBar />
         </Grid>

@@ -57,7 +57,7 @@ export class AppApi extends AbstractApi {
 
   async getDaoUser(): Promise<IDaoUserRes> {
     let userId = getUserId();
-    if (userId != null && this.daoData !== undefined && !isNaN(userId)) {
+    if (userId != null && this.daoData !== undefined && !isNaN(userId) && this.daoData.id !== undefined) {
       return this.get<IDaoUserRes>(
         `/users/details/${userId}?dao_id=${this.daoData.id}`
       );
@@ -72,7 +72,7 @@ export class AppApi extends AbstractApi {
     if (res !== null) {
       if (res === undefined && this.daoUserData === undefined) {
         try {
-          // check for tokens here.....
+          // check for tokens here...
           let creationRes = await this.post<IDaoUserRes>(
             "/users/create_user_profile?dao_id=" + this.daoData.id
           );
